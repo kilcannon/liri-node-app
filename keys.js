@@ -125,8 +125,21 @@ exports.getSomeStuff = function () {
   })
 }
 
-exports.logSomeStuff = function (logInput) {
-  fs.appendFile('log.txt', logInput, function (err) {
+exports.logSomeStuff = function (command) {
+
+  //generates timestamp for liri command activity
+  var currentDate = new Date()
+  var hours = currentDate.getHours()
+  var minutes = currentDate.getMinutes()
+  var seconds = currentDate.getSeconds()
+  var date = currentDate.getDate()
+  var month = currentDate.getMonth()
+  var year = currentDate.getFullYear()
+  var dateString = hours + ":" + minutes + ":" + seconds + " - " + date + "/" + (month + 1) + "/" + year
+  var stuffToLog = "\nAction Executed: " + command + "\nTime Stamp: " 
+    + dateString + "\n\n------------------------------------------\n"
+  
+  fs.appendFile('log.txt', stuffToLog, function (err) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }

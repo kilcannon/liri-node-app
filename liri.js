@@ -8,16 +8,6 @@ var inquirer = require('inquirer')
 console.log("\nWelcome to LIRI! Choose from an action below.")
 console.log("<---------------------------------------->\n")
 
-//generates timestamp for liri command activity
-var currentDate = new Date()
-var hours = currentDate.getHours()
-var minutes = currentDate.getMinutes()
-var seconds = currentDate.getSeconds()
-var date = currentDate.getDate()
-var month = currentDate.getMonth()
-var year = currentDate.getFullYear()
-var dateString = hours + ":" + minutes + ":" + seconds + " - " + date + "/" + (month + 1) + "/" + year
-
 inquirer.prompt([
   {
     type: "list",
@@ -36,35 +26,22 @@ inquirer.prompt([
 ]).then(function(answer) {
   if (answer.command === 'my-tweets') {
     imports.getSomeTweets()
-    
-    var stuffToLog = "\nAction Executed: " + answer.command + "\nTime Stamp: " 
-      + dateString + "\n\n------------------------------------------\n"
-    
-    imports.logSomeStuff(stuffToLog)
+    imports.logSomeStuff(answer.command)
   }
+  
   else if (answer.command === "spotify-this-song") {
     imports.getSomeSongs()
-
-    var stuffToLog = "\nAction Executed: " + answer.command + "\nTime Stamp: " 
-      + dateString + "\n\n------------------------------------------\n"
-
-    imports.logSomeStuff(stuffToLog)
+    imports.logSomeStuff(answer.command)
   }
+
   else if (answer.command === "movie-this") {
     imports.getSomeMovies()
-
-    var stuffToLog = "\nAction Executed: " + answer.command + "\nTime Stamp: " 
-      + dateString + "\n\n------------------------------------------\n"
-
-    imports.logSomeStuff(stuffToLog)
+    imports.logSomeStuff(answer.command)
   }
+
   else if (answer.command === "do-what-it-says") {
     imports.getSomeStuff()
-
-    var stuffToLog = "\nAction Executed: " + answer.command + "\nTime Stamp: " 
-      + dateString + "\n\n------------------------------------------\n"
-
-    imports.logSomeStuff(stuffToLog)
+    imports.logSomeStuff(answer.command)
   }
 })
 
