@@ -34,12 +34,4 @@ inquirer.prompt([
   }
 })
 
-getSomeStuff = function () {
-  fs.readFile("random.txt", "utf8", function(error, data) {
-    decisionArr = []
-    decisionArr = data.split(",") 
-    if (decisionArr[0] === "spotify-this-song") {
-      getSomeSongs()
-    }
-  })
-}
+

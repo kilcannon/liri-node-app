@@ -49,24 +49,29 @@ exports.getSomeSongs = function () {
     default: "blink 182 - all the small things",
   }]).then(function(answer) {
     var request = answer.song
+    callTheSongs(request)
     
-    spotify.search({ type: 'track', query: request, limit: 1}, function(err, data) {
-      if (err) {
-        return console.log('Error occurred: ' + err);
-      }
-    
-    var artist = data.tracks.items[0].artists[0].name
-    var track = data.tracks.items[0].name
-    var URL = data.tracks.items[0].external_urls.spotify
-    var album = data.tracks.items[0].album.name
-    
-    console.log("<---------------------------------------->\n")
-    console.log("Artist: " + artist)
-    console.log("Track: " + track)
-    console.log("URL: " + URL)
-    console.log("Album: " + album)
-    console.log("\n<---------------------------------------->")
-    })
+  })
+}
+ 
+ //Secondary function to adjust for the "do-what-it-says" requirement     
+function callTheSongs(request) {
+  spotify.search({ type: 'track', query: request, limit: 1}, function(err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
+    }
+  
+  var artist = data.tracks.items[0].artists[0].name
+  var track = data.tracks.items[0].name
+  var URL = data.tracks.items[0].external_urls.spotify
+  var album = data.tracks.items[0].album.name
+  
+  console.log("<---------------------------------------->\n")
+  console.log("Artist: " + artist)
+  console.log("Track: " + track)
+  console.log("URL: " + URL)
+  console.log("Album: " + album)
+  console.log("\n<---------------------------------------->")
   })
 }
 
@@ -105,5 +110,15 @@ exports.getSomeMovies = function () {
         console.log("\n<---------------------------------------->")
       }
     })
+  })
+}
+
+exports.getSomeStuff = function () {
+  fs.readFile("random.txt", "utf8", function(error, data) {
+    decisionArr = []
+    decisionArr = data.split(",") 
+    if (decisionArr[0] === "spotify-this-song") {
+      callTheSongs(decisionArr[1])
+    }
   })
 }
