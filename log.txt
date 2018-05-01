@@ -1,0 +1,15 @@
+
+Action Executed: my-tweets
+Time Stamp: 15:20:39 - 1/5/2018
+
+------------------------------------------
+
+Action Executed: spotify-this-song
+Time Stamp: 15:22:13 - 1/5/2018
+
+------------------------------------------
+
+Action Executed: movie-this
+Time Stamp: 15:22:21 - 1/5/2018
+
+------------------------------------------

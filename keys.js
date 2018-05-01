@@ -55,7 +55,8 @@ exports.getSomeSongs = function () {
  
  //Secondary function to adjust for the "do-what-it-says" requirement     
 function callTheSongs(request) {
-  spotify.search({ type: 'track', query: request, limit: 1}, function(err, data) {
+ 
+ spotify.search({ type: 'track', query: request, limit: 1}, function(err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
@@ -114,11 +115,20 @@ exports.getSomeMovies = function () {
 
 //defined action from random.txt file
 exports.getSomeStuff = function () {
+  
   fs.readFile("random.txt", "utf8", function(error, data) {
     decisionArr = []
     decisionArr = data.split(",") 
     if (decisionArr[0] === "spotify-this-song") {
       callTheSongs(decisionArr[1])
+    }
+  })
+}
+
+exports.logSomeStuff = function (logInput) {
+  fs.appendFile('log.txt', logInput, function (err) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
     }
   })
 }
