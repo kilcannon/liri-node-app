@@ -66,7 +66,7 @@ function callTheSongs(request) {
   var URL = data.tracks.items[0].external_urls.spotify
   var album = data.tracks.items[0].album.name
   
-  console.log("<---------------------------------------->\n")
+  console.log("\n<---------------------------------------->\n")
   console.log("Artist: " + artist)
   console.log("Track: " + track)
   console.log("URL: " + URL)
@@ -98,7 +98,7 @@ exports.getSomeMovies = function () {
         var plot = JSON.parse(body).Plot
         var actors = JSON.parse(body).Actors
 
-        console.log("<---------------------------------------->\n")
+        console.log("\n<---------------------------------------->\n")
         console.log("Title: " + movieTitle)
         console.log("Year: " + yearReleased)
         console.log("IMDB Rating: " + imdbRating)
