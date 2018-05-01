@@ -1,6 +1,10 @@
+//importing functions from keys.js file
 var imports = require('./keys.js')
+
+//npm requirements for node functionality
 var inquirer = require('inquirer')
 
+//setting console prompts to guide user
 console.log("\nWelcome to LIRI! Choose from an action below.")
 console.log("<---------------------------------------->\n")
 

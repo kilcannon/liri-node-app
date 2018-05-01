@@ -50,7 +50,6 @@ exports.getSomeSongs = function () {
   }]).then(function(answer) {
     var request = answer.song
     callTheSongs(request)
-    
   })
 }
  
@@ -113,6 +112,7 @@ exports.getSomeMovies = function () {
   })
 }
 
+//defined action from random.txt file
 exports.getSomeStuff = function () {
   fs.readFile("random.txt", "utf8", function(error, data) {
     decisionArr = []
