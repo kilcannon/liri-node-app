@@ -28,7 +28,9 @@ exports.getSomeTweets = function() {
 	client.get('statuses/user_timeline', 
 	{screen_name: 's_bouchey', count: 20}, 
 	function(error, tweets, response) {
-	  if(error) throw error
+	  if (err) {
+      return console.log('Error occurred: ' + err);
+    }
 
     tweets.forEach(function(tweet) {
       var tweetString = ''
@@ -57,9 +59,9 @@ exports.getSomeSongs = function () {
 function callTheSongs(request) {
  
  spotify.search({ type: 'track', query: request, limit: 1}, function(err, data) {
-    if (err) {
-      return console.log('Error occurred: ' + err);
-    }
+  if (err) {
+    return console.log('Error occurred: ' + err);
+  }
   
   var artist = data.tracks.items[0].artists[0].name
   var track = data.tracks.items[0].name
@@ -122,12 +124,18 @@ exports.getSomeStuff = function () {
     if (decisionArr[0] === "spotify-this-song") {
       callTheSongs(decisionArr[1])
     }
+    else if (decisionArr[0] === "my-tweets") {
+      getSomeTweets()
+    }
+    else if (decisionArr[0] === "movie-this") {
+      getSomeMovies()
+    }
   })
 }
 
+//generates timestamp for liri command activity
 exports.logSomeStuff = function (command) {
 
-  //generates timestamp for liri command activity
   var currentDate = new Date()
   var hours = currentDate.getHours()
   var minutes = currentDate.getMinutes()
